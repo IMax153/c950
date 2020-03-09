@@ -1,0 +1,5 @@
+{
+  "options": "WGUPS Package Routing Application\nPlease select an option from the options below:\n  distance - Display the total distance to deliver all packages\n  package - Display the delivery status for ONE package at a specific time\n  all - Display the delivery status for ALL packages at a specific time\n  clear - Clear the console\n  exit - Exit the application\n> ",
+  "time": "Please enter a time in 24-hour HH:MM:SS format\n> ",
+  "package": "Please enter the package identifier\n> "
+}
