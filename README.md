@@ -3,6 +3,7 @@
 ###### Author: Maxwell Brown (000933363)
 
 ### Stated Problem
+
 The purpose of this project is to create an algorithm for the Western Governors University Parcel Service (WGUPS) to determine the best route and delivery distribution for their Salt Lake City Daily Local Deliveries (DLD). Packages are currently not being delivered by their promised deadline and a more efficient and accurate solution is necessary. The Salt Lake City route is covered by three trucks, two drivers, and has a daily average of approximately 40 packages.
 
 #### Assumptions:
@@ -25,7 +26,7 @@ The following are the constraints imposed on the WGUPS delivery service:
 Each package may have **one** special requirement that must be addressed by the WGUPS. The following are possible restrictions that may be imposed on a given package:
 
 - The package must be delivered with other packages.
-  - We refer to these packages as *linked* packages in our algorithm.
+  - We refer to these packages as _linked_ packages in our algorithm.
 - The package must be delivered by a specific truck.
 - The package has a specific deadline by which it must be delivered.
 - The package is delayed in arriving to the depot and will not be available for pickup until later in the day.
@@ -41,9 +42,10 @@ The core WGUPS Package Routing system utilizes a greedy algorithm to solve the r
 The prioritization system is used by the WGUPS Package Router to determine which packages should be given precedence when loading a given truck. The system separates packages into two groups - those considered to have **high priority** and those considered to have **regular priority**. If a package is not considered **high priority**, then it is considered **regular priority**.
 
 Packages are considered **high priority** if they meet **ANY** of the following criteria:
+
 - The package has an associated deadline.
 - The package has a requirement to be delivered by a specific truck.
-- The package is *linked* to other packages.
+- The package is _linked_ to other packages.
 
 Trucks are first loaded to capacity with any high priority packages remaining at the depot. Once all high priority packages have been loaded onto trucks, loading of the regular priority packages commences and continues until the truck is at capacity.
 
@@ -115,7 +117,7 @@ The time of package pickup and delivery is determined by the internal time of ea
 
 ##### Package Delivery Status
 
-When a package is loaded onto a truck or delivered to its final destination, the package is updated with a *timestamp* indicating when these events took place. This allows for efficient reporting of the status of each package throughout the delivery period.
+When a package is loaded onto a truck or delivered to its final destination, the package is updated with a _timestamp_ indicating when these events took place. This allows for efficient reporting of the status of each package throughout the delivery period.
 
 ###### Package Delivery Status Pseudocode
 
@@ -134,6 +136,7 @@ When a package is loaded onto a truck or delivered to its final destination, the
 When a truck is selected to begin loading packages, the arrival time of each package to the depot is compared to the departure time of the truck from the depot to determine (in addition to any package restrictions) if the package can be loaded.
 
 ###### Package Delivery Restrictions Pseudocode
+
 ```
 if the departure time of the truck from the depot \
   is later than the arrival time of the package at the depot AND \
@@ -188,6 +191,7 @@ $$
 Every class within the application has its methods annotated with their associated space and time complexity. However, for convenience, the space and time complexity of each class method is also listed below.
 
 #### DataLoader
+
 |     Method     | Space Complexity | Time Complexity |
 | :------------: | :--------------: | :-------------: |
 | get_distances  |      $O(n)$      |     $O(n)$      |
@@ -199,24 +203,28 @@ Every class within the application has its methods annotated with their associat
 |  load_prompts  |      $O(n)$      |     $O(n)$      |
 
 #### DistanceTable
+
 |  Method  | Space Complexity | Time Complexity |
 | :------: | :--------------: | :-------------: |
 | distance |      $O(n)$      |     $O(n)$      |
 | to_depot |      $O(n)$      |     $O(n)$      |
 
 #### PackageTable
+
 | Method | Space Complexity | Time Complexity |
 | :----: | :--------------: | :-------------: |
 |  all   |      $O(n)$      |     $O(n)$      |
 |  get   |      $O(n)$      |     $O(n)$      |
 
 #### Depot
+
 |      Method      | Space Complexity | Time Complexity  |
 | :--------------: | :--------------: | :--------------: |
 |   can_deliver    |      $O(1)$      |      $O(1)$      |
 | deliver_packages |     $O(n^3)$     | $O(n^3*\log(n))$ |
 
 #### Package
+
 |      Method      | Space Complexity | Time Complexity |
 | :--------------: | :--------------: | :-------------: |
 |     deliver      |      $O(1)$      |     $O(1)$      |
@@ -227,6 +235,7 @@ Every class within the application has its methods annotated with their associat
 |    status_at     |      $O(1)$      |     $O(1)$      |
 
 #### Truck
+
 |      Method      | Space Complexity | Time Complexity  |
 | :--------------: | :--------------: | :--------------: |
 |   can_deliver    |      $O(1)$      |      $O(1)$      |
@@ -242,6 +251,7 @@ Every class within the application has its methods annotated with their associat
 | unload_packages  |      $O(n)$      |      $O(n)$      |
 
 #### Clock
+
 |   Method    | Space Complexity | Time Complexity |
 | :---------: | :--------------: | :-------------: |
 |  add_hours  |      $O(1)$      |     $O(1)$      |
@@ -251,6 +261,7 @@ Every class within the application has its methods annotated with their associat
 |    clone    |      $O(1)$      |     $O(1)$      |
 
 #### HashSet
+
 |    Method     | Space Complexity | Time Complexity |
 | :-----------: | :--------------: | :-------------: |
 |    delete     |      $O(1)$      |     $O(n)$      |
@@ -263,6 +274,7 @@ Every class within the application has its methods annotated with their associat
 |    values     |      $O(n)$      |     $O(n)$      |
 
 #### Application
+
 |      Method       | Space Complexity | Time Complexity  |
 | :---------------: | :--------------: | :--------------: |
 |  execute_command  |      $O(1)$      |      $O(1)$      |
@@ -276,6 +288,7 @@ Every class within the application has its methods annotated with their associat
 |       stop        |      $O(1)$      |      $O(1)$      |
 
 #### Commander
+
 |  Method  | Space Complexity | Time Complexity |
 | :------: | :--------------: | :-------------: |
 | execute  |      $O(1)$      |     $O(n)$      |
@@ -283,6 +296,7 @@ Every class within the application has its methods annotated with their associat
 | register |      $O(1)$      |     $O(n)$      |
 
 #### Prompter
+
 |  Method  | Space Complexity | Time Complexity |
 | :------: | :--------------: | :-------------: |
 |  clear   |      $O(1)$      |     $O(1)$      |
@@ -316,7 +330,7 @@ This hash table implementation is able to efficiently store and retrieve the spe
 
 #### Efficiency
 
-The chosen hash table implementation is quite efficient for key-value pair data storage and retrieval. The hash table can be constructed with an initial capacity allowing for improved space complexity. However, the worst-case  time complexity for resolving collisions with the linear probing implementation is $O(n)$. This is similar to the worst-case time complexity for other collision resolution techniques utilized in hash tables.
+The chosen hash table implementation is quite efficient for key-value pair data storage and retrieval. The hash table can be constructed with an initial capacity allowing for improved space complexity. However, the worst-case time complexity for resolving collisions with the linear probing implementation is $O(n)$. This is similar to the worst-case time complexity for other collision resolution techniques utilized in hash tables.
 
 #### Strengths
 
@@ -341,5 +355,7 @@ One thing that I would implement differently were I to repeat this project would
 Another aspect of the current solution that I would revisit would be the selected algorithm. Although a greedy algorithm solves the problem as specified, it does not scale well as the search space of the problem increases. In addition, the currently implementation likely does not identify the most optimal solution because it does not consider solutions that partially fill trucks. I believe that a metaheuristic implementation would avoid these global optima by considering a much larger search space in a more efficient manner.
 
 ### References
+
 1. van Laarhoven, PJM. (1987). Simulated annealing. In: Simulated Annealing: Theory and Applications. Mathematics and Its Applications, vol 37. Springer, Dordrecht. Retrieved from https://link.springer.com/chapter/10.1007/978-94-015-7744-1_2.
-2. Mitchell, M. (1995). Genetic algorithms: An overview. Mathematics, Computer Science. Complexity. Retrieved from https://www.semanticscholar.org/paper/Genetic-algorithms%3A-An-overview-Mitchell/630a7d2f0506cb5a01b09f07eef8a3b5a3af0387#references.
+2. Mitchell, M. (1995). Genetic algorithms: An overview. Mathematics, Computer Science. Complexity. Retrieved from https://www.semanticscholar.org/paper/Genetic-algorithms%3A-An-overview-Mitchell/
+   630a7d2f0506cb5a01b09f07eef8a3b5a3af0387.

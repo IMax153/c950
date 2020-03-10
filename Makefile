@@ -3,3 +3,6 @@ init:
 
 run:
 	python3 -m wgups
+
+pdf:
+	cd scripts && ./md2pdf.sh
